@@ -116,7 +116,7 @@
 
             setTimeout(() => {
 
-                sum % 2 == 0 ? alert("X WON !!") : alert("O WON !!")
+                sum % 2 == 0 ? alert("X GANA !!") : alert("O GANA !!")
 
                 setTimeout(() => {
                     location.reload()
@@ -263,9 +263,11 @@ socket.on('chat:message', function (data) {
 socket.on('chat:typing',function(data){
     // console.log(data);
     actions.innerHTML=`<p><em>${data} esta escribiendo</em></p>`;
+    actions.style.display = "block";
 });
 socket.on('chat:stoppedTyping', function () {
-    actions.innerHTML = ''; // Limpiar notificación
+    // actions.innerHTML = '';
+    actions.style.display = "none";
 });
 
 // socket.on("disconnect", () => {
@@ -289,5 +291,34 @@ stickerPanel.addEventListener("click", function (event) {
 
 // Mostrar stickers recibidos
 socket.on("chat:sticker", function (data) {
-    output.innerHTML += `<p><strong>${data.username}</strong>: <img src="${data.sticker}" class="sticker-message"></p>`;
+    // output.innerHTML += `<p><img src="${data.sticker}" class="sticker-message"></p>`;
+    let messageClass = data.username === username.value ? "sent" : "received";
+    output.innerHTML += `
+    <div class="message ${messageClass}">
+        <img src="${data.sticker}" class="sticker-message">
+    </div>`;
 });
+
+
+// Obtener el botón de cambio de tema
+const themeToggleButton = document.getElementById("theme-toggle");
+
+// Función para cambiar el tema
+function toggleTheme() {
+    // Verificar si el body tiene el tema claro
+    if (document.body.classList.contains("light-theme")) {
+        // Cambiar a tema oscuro
+        document.body.classList.remove("light-theme");
+        document.body.classList.add("dark-theme");
+    } else {
+        // Cambiar a tema claro
+        document.body.classList.remove("dark-theme");
+        document.body.classList.add("light-theme");
+    }
+}
+
+// Asignar la función al evento click del botón
+themeToggleButton.addEventListener("click", toggleTheme);
+
+// Configurar el tema inicial (por ejemplo, claro)
+document.body.classList.add("light-theme");
