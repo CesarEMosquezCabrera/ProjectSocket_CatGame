@@ -13,10 +13,12 @@ body {
 #all-container{
     display: flex;
     width: 100%;
+    padding-bottom: 30px;
 }
 #game-container {
     background-color: rgb(255, 255, 255);
-    display: grid;
+    /* display: grid; */
+    display: flex;
     place-items: center;
     font-family: 'Tilt Warp', cursive;
     background-color: yellow;
@@ -25,6 +27,17 @@ body {
 #chat-container{
     background-color: red;
     width: 30%;
+}
+#game-left-container{
+    margin: 0px 0px 0px 30px;
+    width: 300px;
+}
+#game-right-container{
+    margin: 0px 0px 0px 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 h1 {
@@ -75,6 +88,13 @@ img {
     width: 250px;
     background-color: rgb(0, 0, 0);
 }
+#send {
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 10px;
+    width: 100px;
+    background-color: rgb(51, 219, 0);
+}
 
 .btn:hover {
     background-color: rgb(226, 228, 230);
@@ -124,7 +144,7 @@ p {
 /* asssssssssssssss */
 .message {
     padding: 10px;
-    margin: 5px;
+    /* margin: 5px; */
     border-radius: 10px;
     max-width: 60%;
     display: inline-block;
@@ -142,4 +162,33 @@ p {
     align-self: flex-start;
     text-align: left;
     margin-right: auto;
+}
+
+#chat-window{
+    padding:14px 0;
+    margin: 0 20px;
+    border-bottom: 1px solid #e9e9e9;
+    color: #555;
+    height: 100px;
+}
+#output p{
+    color: #aaa;
+    padding: 14px 0;
+    margin: 0 20px;
+}
+
+#actions p{
+    padding: 14px 0;
+    margin: 0 20px;
+    border-bottom: 1px solid #e9e9e9;
+    color: #555;
+}
+
+input{
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: 0;
+    background: #eee;
+    display: block;
+    width: 100%;
 }

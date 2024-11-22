@@ -113,21 +113,21 @@ io.on("connection",(socket)=>{
 
 
 
-    socket.on("playing2", (data) => {
-        const game = games[data.gameId]; // Busca el juego actual
-        const player = game.players.find((p) => p.name === data.name);
+    // socket.on("playing2", (data) => {
+    //     const game = games[data.gameId]; // Busca el juego actual
+    //     const player = game.players.find((p) => p.name === data.name);
     
-        if (player) {
-            player.move = data.id; // Registra el movimiento del jugador
+    //     if (player) {
+    //         player.move = data.id; // Registra el movimiento del jugador
     
-            game.sum += 1; // Incrementa la suma de turnos
+    //         game.sum += 1; // Incrementa la suma de turnos
     
-            io.emit("playing", {
-                allPlayers: game.players,
-                sum: game.sum, // Incluye el estado de la suma para calcular el turno
-            });
-        }
-    });
+    //         io.emit("playing", {
+    //             allPlayers: game.players,
+    //             sum: game.sum, // Incluye el estado de la suma para calcular el turno
+    //         });
+    //     }
+    // });
     
     
 });

@@ -31,11 +31,13 @@
         console.log("html",allPlayersArray)
 
         if (name != '') {
+            document.getElementById("titulo").style.margin = "0px"
+            document.getElementById("titulo").style.marginBottom  = "30px"
             document.getElementById("loading").style.display = "none"
             document.getElementById("name").style.display = "none"
             document.getElementById("find").style.display = "none"
             document.getElementById("enterName").style.display = "none"
-            document.getElementById("game-container").style.display = "block"
+            document.getElementById("game-container").style.display = "flex"
             document.getElementById("chat-container").style.display = "block"
             document.getElementById("whosTurn").innerText = "X's Turn"
         }
@@ -70,21 +72,23 @@
         p2id = foundObject.p2.p2move
 
         if ((foundObject.sum) % 2 == 0) {
-            document.getElementById("whosTurn").innerText = "O's Turn"
+            document.getElementById("whosTurn").innerText = "Turno de O"
         }
         else {
-            document.getElementById("whosTurn").innerText = "X's Turn"
+            document.getElementById("whosTurn").innerText = "Turno de X"
         }
 
         if (p1id != '') {
             document.getElementById(`${p1id}`).innerText = "X"
             document.getElementById(`${p1id}`).disabled = true
             document.getElementById(`${p1id}`).style.color = "black"
+            document.getElementById(`${p1id}`).style.backgroundColor = "#ff9999"
         }
         if (p2id != '') {
             document.getElementById(`${p2id}`).innerText = "O"
             document.getElementById(`${p2id}`).disabled = true
             document.getElementById(`${p2id}`).style.color = "black"
+            document.getElementById(`${p2id}`).style.backgroundColor = "#99ccff"
         }
 
         check(name, foundObject.sum)
@@ -142,56 +146,56 @@
 
 
 
-// Variable para guardar el turno
-let currentTurn = "X"; // Empieza con X
+// // Variable para guardar el turno
+// let currentTurn = "X"; // Empieza con X
 
-document.querySelectorAll(".btn").forEach((e) => {
-    e.addEventListener("click", function () {
-        let value = document.getElementById("value").innerText;
+// document.querySelectorAll(".btn").forEach((e) => {
+//     e.addEventListener("click", function () {
+//         let value = document.getElementById("value").innerText;
 
-        // Verifica si el jugador tiene el turno
-        if (value === currentTurn) {
-            e.innerText = value; // Marca el botón
-            e.disabled = true; // Desactiva el botón actual
-            e.style.color = "black";
+//         // Verifica si el jugador tiene el turno
+//         if (value === currentTurn) {
+//             e.innerText = value; // Marca el botón
+//             e.disabled = true; // Desactiva el botón actual
+//             e.style.color = "black";
 
-            // Envía la acción al servidor
-            socket.emit("playing", { value: value, id: e.id, name: name });
+//             // Envía la acción al servidor
+//             socket.emit("playing", { value: value, id: e.id, name: name });
 
-            // Cambia el turno localmente
-            currentTurn = currentTurn === "X" ? "O" : "X";
-        } else {
-            alert("Es el turno del otro jugador.");
-        }
-    });
-});
+//             // Cambia el turno localmente
+//             currentTurn = currentTurn === "X" ? "O" : "X";
+//         } else {
+//             alert("Es el turno del otro jugador.");
+//         }
+//     });
+// });
 
-// Actualiza el turno recibido del servidor
-socket.on("playing2", (e) => {
-    const foundObject = e.allPlayers.find(
-        (obj) => obj.p1.p1name == `${name}` || obj.p2.p2name == `${name}`
-    );
+// // Actualiza el turno recibido del servidor
+// socket.on("playing2", (e) => {
+//     const foundObject = e.allPlayers.find(
+//         (obj) => obj.p1.p1name == `${name}` || obj.p2.p2name == `${name}`
+//     );
 
-    p1id = foundObject.p1.p1move;
-    p2id = foundObject.p2.p2move;
+//     p1id = foundObject.p1.p1move;
+//     p2id = foundObject.p2.p2move;
 
-    // Sincroniza el turno
-    currentTurn = (foundObject.sum % 2 === 0) ? "O" : "X";
+//     // Sincroniza el turno
+//     currentTurn = (foundObject.sum % 2 === 0) ? "O" : "X";
 
-    if (p1id != "") {
-        document.getElementById(`${p1id}`).innerText = "X";
-        document.getElementById(`${p1id}`).disabled = true;
-        document.getElementById(`${p1id}`).style.color = "black";
-    }
-    if (p2id != "") {
-        document.getElementById(`${p2id}`).innerText = "O";
-        document.getElementById(`${p2id}`).disabled = true;
-        document.getElementById(`${p2id}`).style.color = "black";
-    }
+//     if (p1id != "") {
+//         document.getElementById(`${p1id}`).innerText = "X";
+//         document.getElementById(`${p1id}`).disabled = true;
+//         document.getElementById(`${p1id}`).style.color = "black";
+//     }
+//     if (p2id != "") {
+//         document.getElementById(`${p2id}`).innerText = "O";
+//         document.getElementById(`${p2id}`).disabled = true;
+//         document.getElementById(`${p2id}`).style.color = "black";
+//     }
 
-    // Verifica la condición de victoria o empate
-    check(name, foundObject.sum);
-});
+//     // Verifica la condición de victoria o empate
+//     check(name, foundObject.sum);
+// });
 
 
 //LOGICA PARA MENSAJES
@@ -247,7 +251,7 @@ socket.on('chat:message', function (data) {
     // Añade el mensaje al contenedor con la clase adecuada
     output.innerHTML += `
         <div class="message ${messageClass}">
-            <strong>${data.username}</strong>: ${data.message}
+            <strong>${data.message}
         </div>
     `;
 
