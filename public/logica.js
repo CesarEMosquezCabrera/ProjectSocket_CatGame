@@ -66,36 +66,38 @@
     })
 
     socket.on("playing", (e) => {
-        const foundObject = (e.allPlayers).find(obj => obj.p1.p1name == `${name}` || obj.p2.p2name == `${name}`);
-
-        p1id = foundObject.p1.p1move
-        p2id = foundObject.p2.p2move
-
-        if ((foundObject.sum) % 2 == 0) {
-            document.getElementById("whosTurn").innerText = "Turno de O"
+        const foundObject = e.allPlayers.find(
+            (obj) => obj.p1.p1name == `${name}` || obj.p2.p2name == `${name}`
+        );
+    
+        p1id = foundObject.p1.p1move;
+        p2id = foundObject.p2.p2move;
+    
+        // Actualizamos el turno de forma sincronizada
+        if ((foundObject.sum) % 2 === 0) {
+            document.getElementById("whosTurn").innerText = "Turno de O";
+        } else {
+            document.getElementById("whosTurn").innerText = "Turno de X";
         }
-        else {
-            document.getElementById("whosTurn").innerText = "Turno de X"
+    
+        // Actualizamos los botones de ambos jugadores
+        if (p1id !== '') {
+            document.getElementById(`${p1id}`).innerText = "X";
+            document.getElementById(`${p1id}`).disabled = true;
+            document.getElementById(`${p1id}`).style.color = "black";
+            document.getElementById(`${p1id}`).style.backgroundColor = "#ff9999";
         }
-
-        if (p1id != '') {
-            document.getElementById(`${p1id}`).innerText = "X"
-            document.getElementById(`${p1id}`).disabled = true
-            document.getElementById(`${p1id}`).style.color = "black"
-            document.getElementById(`${p1id}`).style.backgroundColor = "#ff9999"
+        if (p2id !== '') {
+            document.getElementById(`${p2id}`).innerText = "O";
+            document.getElementById(`${p2id}`).disabled = true;
+            document.getElementById(`${p2id}`).style.color = "black";
+            document.getElementById(`${p2id}`).style.backgroundColor = "#99ccff";
         }
-        if (p2id != '') {
-            document.getElementById(`${p2id}`).innerText = "O"
-            document.getElementById(`${p2id}`).disabled = true
-            document.getElementById(`${p2id}`).style.color = "black"
-            document.getElementById(`${p2id}`).style.backgroundColor = "#99ccff"
-        }
-
-        check(name, foundObject.sum)
-
-
-    })
-
+    
+        // Comprobamos el estado del juego para ver si hay un ganador
+        check(name, foundObject.sum);
+    });
+    
     function check(name, sum) {
 
 
