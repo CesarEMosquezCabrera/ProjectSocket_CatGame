@@ -6,52 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TicTacToe</title>
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-    <h1 id="titulo">Tic-Tac-Toe</h1>
+    <h1>Tic-Tac-Toe</h1>
     <div>
-        <p style="font-size: 1.2rem;" id="enterName">Inserta Tu Nombre : </p>
+        <p style="font-size: 1.2rem;" id="enterName">Enter your name : </p>
+
         <input type="text" placeholder="Name" id="name" autocomplete="off">
     </div>
-    <button id="find">Buscando por jugador</button>
+    <button id="find">Search for a player</button>
     <img id="loading" src="loading.gif" alt="">
 
     <div id="all-container">
         <div id="game-container">
-            <div id="game-left-container">
-                <p id="valueCont">Estas Jugando Como <span id="value"></span></p>
-                <br>
-                <div style="display: flex; position: relative;">    
-                    <p id="userCont">Tu Usuario: <span id="user"></span></p>
-                    <br>
-    
-                </div>
-                <div style="display: flex; position: relative;">
-                    <p id="oppNameCont">Oponente: <span id="oppName"></span></p>
-    
-                </div>
-                <br>
+            <div style="display: flex; position: relative;">
+                <!-- <p id="userCont">You : <span id="user"></span></p> -->
+                <p id="userCont"><span id="user"></span></p>
+                <p id="oppNameCont">Opponent : <span id="oppName"></span></p>
+
             </div>
-            <div id="game-right-container">
-                <p id="whosTurn">Turno de X</p>
-                <div id="bigcont">
-                    <div id="cont">
-    
-                        <button id="btn1" class="btn"></button>
-                        <button id="btn2" class="btn"></button>
-                        <button id="btn3" class="btn"></button>
-                        <button id="btn4" class="btn"></button>
-                        <button id="btn5" class="btn"></button>
-                        <button id="btn6" class="btn"></button>
-                        <button id="btn7" class="btn"></button>
-                        <button id="btn8" class="btn"></button>
-                        <button id="btn9" class="btn"></button>
-                    </div>
+            <br>
+            <p id="valueCont">You are plaing as <span id="value"></span></p>
+            <br>
+            <p id="whosTurn">X's Turn</p>
+            <div id="bigcont">
+                <div id="cont">
+
+                    <button id="btn1" class="btn"></button>
+                    <button id="btn2" class="btn"></button>
+                    <button id="btn3" class="btn"></button>
+                    <button id="btn4" class="btn"></button>
+                    <button id="btn5" class="btn"></button>
+                    <button id="btn6" class="btn"></button>
+                    <button id="btn7" class="btn"></button>
+                    <button id="btn8" class="btn"></button>
+                    <button id="btn9" class="btn"></button>
                 </div>
             </div>
         </div>
